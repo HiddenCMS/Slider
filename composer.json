@@ -1,0 +1,12 @@
+{
+  "name": "hiddencms/slider",
+  "description": "Diaporamas et widget Slider pour HiddenCMS",
+  "type": "hiddencms-addon",
+  "license": "GPL-3.0-only",
+  "require": {"php": ">=8.1", "hiddencms/core": "^0.7.3"},
+  "autoload": {"psr-4": {"HB\\Modules\\Slider\\": "modules/slider/", "HB\\Widgets\\Slider\\": "widgets/slider/", "HiddenCMS\\Slider\\": "src/"}, "classmap": ["modules/slider/slider.php", "widgets/slider/slider.php"]},
+  "extra": {"hiddencms": {"addons": [
+    {"type": "module", "name": "slider", "class": "HB\\Modules\\Slider\\Slider", "path": "modules/slider"},
+    {"type": "widget", "name": "slider", "class": "HB\\Widgets\\Slider\\Slider", "path": "widgets/slider"}
+  ], "migrations": ["HiddenCMS\\Slider\\Migrations\\CreateSliderTables"]}}
+}

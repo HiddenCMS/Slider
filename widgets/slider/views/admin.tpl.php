@@ -1,0 +1,5 @@
+<input type="hidden" name="settings[content_only]" value="1" />
+<div class="field"><label for="widget-slider-choice">Slider</label><select id="widget-slider-choice" name="settings[slider_id]" class="ui fluid selection dropdown"><option value="0">Choisir un slider</option>
+<?php foreach ($sliders as $row): ?><option value="<?php echo (int)$row['slider_id'] ?>"<?php if ((int)($settings['slider_id'] ?? 0) === (int)$row['slider_id']) echo ' selected'; ?>><?php echo utf8_htmlentities($row['title'].($row['published'] ? '' : ' (inactif)')) ?></option><?php endforeach ?>
+</select></div>
+<div class="field"><div class="ui toggle checkbox"><input type="hidden" name="settings[full_width]" value="0" /><input id="widget-slider-width" type="checkbox" name="settings[full_width]" value="1"<?php if (!empty($settings['full_width'])) echo ' checked'; ?> /><label for="widget-slider-width">Pleine largeur de l'ecran</label></div></div>
