@@ -7,9 +7,29 @@
             var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             var count = root.querySelectorAll('.swiper-slide').length;
             var play = root.querySelector('.hc-slider-play');
-            var effects = ['slide','fade','cube','flip'];
+            var effects = ['slide','fade','cube','flip','coverflow','cards','creative','zoom','vertical','fade-move'];
+            var effect = !reduced && effects.includes(root.dataset.effect) ? root.dataset.effect : 'slide';
+            var creative = {
+                perspective:true,
+                prev:{translate:['-20%',0,-180],rotate:[0,0,-6],opacity:0,scale:0.9},
+                next:{translate:['100%',0,0],rotate:[0,0,6],opacity:0,scale:0.9}
+            };
+            if (effect === 'zoom') creative = {
+                perspective:false,
+                prev:{translate:[0,0,0],opacity:0,scale:1.15},
+                next:{translate:[0,0,0],opacity:0,scale:0.85}
+            };
+            if (effect === 'fade-move') creative = {
+                perspective:false,
+                prev:{translate:['-6%',0,0],opacity:0},
+                next:{translate:['6%',0,0],opacity:0}
+            };
             var swiper = new Swiper(root.querySelector('.swiper'), {
-                effect: reduced ? 'slide' : (effects.includes(root.dataset.effect) ? root.dataset.effect : 'slide'),
+                effect: effect === 'vertical' ? 'slide' : (['zoom','fade-move'].includes(effect) ? 'creative' : effect),
+                direction: effect === 'vertical' ? 'vertical' : 'horizontal',
+                coverflowEffect:{rotate:35,stretch:0,depth:150,modifier:1,slideShadows:false},
+                cardsEffect:{perSlideOffset:6,perSlideRotate:3,slideShadows:false},
+                creativeEffect:creative,
                 fadeEffect: {crossFade:true}, speed: reduced ? 0 : Number(root.dataset.speed), rewind:true,
                 autoplay: count > 1 && !reduced && root.dataset.autoplay === '1' ? {delay:Number(root.dataset.delay),disableOnInteraction:false,pauseOnMouseEnter:true} : false,
                 navigation:{prevEl:root.querySelector('.hc-slider-prev'),nextEl:root.querySelector('.hc-slider-next')},

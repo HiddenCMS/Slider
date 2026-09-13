@@ -5,7 +5,11 @@ class Settings
 {
     public static function effects()
     {
-        return ['slide' => 'Glissement', 'fade' => 'Fondu', 'cube' => 'Cube', 'flip' => 'Retournement'];
+        return [
+            'slide' => 'Glissement', 'fade' => 'Fondu', 'cube' => 'Cube', 'flip' => 'Retournement',
+            'coverflow' => 'Coverflow', 'cards' => 'Cartes', 'creative' => 'Créatif',
+            'zoom' => 'Zoom', 'vertical' => 'Glissement vertical', 'fade-move' => 'Fondu avec déplacement'
+        ];
     }
     public static function number($value, $min, $max, $label)
     {

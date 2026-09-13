@@ -2,7 +2,7 @@
 require dirname(__DIR__).'/src/Settings.php';
 use HiddenCMS\Slider\Settings;
 function check($value, $label) { if (!$value) throw new RuntimeException($label); echo "PASS $label\n"; }
-check(count(Settings::effects()) === 4, 'Four supported effects');
+check(array_keys(Settings::effects()) === ['slide','fade','cube','flip','coverflow','cards','creative','zoom','vertical','fade-move'], 'Ten supported effects');
 check(Settings::url('/fr/contact') === '/fr/contact', 'Local link accepted');
 check(Settings::url('https://example.com/?a=1&b=2') !== '', 'HTTPS link accepted');
 foreach (['javascript:alert(1)', '//example.com', '/\\example.com', 'data:text/html,test', "https://example.com/\n"] as $value) {

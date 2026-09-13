@@ -14,4 +14,7 @@ try {
     }
 } finally {$db->rollback();}
 $html.='</main><script src="/fr/vendor/hiddencms/slider/widgets/slider/js/swiper.js"></script><script src="/fr/vendor/hiddencms/slider/widgets/slider/js/slider.js"></script></html>';
+foreach (['css/slider.css','js/slider.js'] as $asset) {
+    $html=str_replace('/widgets/slider/'.$asset.'"','/widgets/slider/'.$asset.'?v='.filemtime(dirname(__DIR__).'/widgets/slider/'.$asset).'"',$html);
+}
 file_put_contents($destination,$html);echo $destination."\n";
