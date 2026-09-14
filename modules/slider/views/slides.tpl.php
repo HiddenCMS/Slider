@@ -1,4 +1,4 @@
-<div class="slider-admin-tools"><h2><?php echo utf8_htmlentities($slider['title']) ?> <span class="slider-count"><?php echo count($slides) ?></span></h2><?php echo $this->button('Retour')->icon('fas fa-arrow-left')->color('secondary')->url('admin/slider') ?><?php echo $this->button('Apercu')->icon('far fa-eye')->color('secondary')->url('admin/slider/preview/'.$slider['slider_id']) ?><?php echo $this->button_update('admin/slider/edit/'.$slider['slider_id']) ?><?php echo $this->button_create('admin/slider/slides/add/'.$slider['slider_id'], 'Ajouter une slide') ?></div>
+<div class="slider-admin-tools"><h2><?php echo utf8_htmlentities($slider['title']) ?> <span class="slider-count"><?php echo count($slides) ?></span></h2><?php echo $this->button((string)$this->lang('Back'))->icon('fas fa-arrow-left')->color('secondary')->url('admin/slider') ?><?php echo $this->button('Apercu')->icon('far fa-eye')->color('secondary')->url('admin/slider/preview/'.$slider['slider_id']) ?><?php echo $this->button_update('admin/slider/edit/'.$slider['slider_id']) ?><?php echo $this->button_create('admin/slider/slides/add/'.$slider['slider_id'], (string)$this->lang('Add slide')) ?></div>
 <div class="slider-order-status" role="status" aria-live="polite"></div>
 <ul class="slider-slide-list" data-slider-sort="<?php echo url('admin/slider/sort/'.$slider['slider_id']) ?>" data-token="<?php echo utf8_htmlentities($sort_token) ?>">
 <?php foreach ($slides as $index => $row): ?><li class="slider-slide-row" data-id="<?php echo (int)$row['slide_id'] ?>">
@@ -8,4 +8,4 @@
 <span class="ui tiny <?php echo $row['published'] ? 'green' : '' ?> label"><?php echo $row['published'] ? 'Active' : 'Inactive' ?></span>
 <div class="slider-admin-actions"><?php echo $this->button_update('admin/slider/slides/edit/'.$row['slide_id']) ?><?php echo $this->button_delete('admin/slider/slides/delete/'.$row['slide_id']) ?></div>
 </li><?php endforeach ?></ul>
-<?php if (!$slides): ?><div class="slider-empty"><?php echo icon('far fa-images') ?><p>Aucune slide</p></div><?php endif ?>
+<?php if (!$slides): ?><div class="slider-empty"><?php echo icon('far fa-images') ?><p><?php echo $this->lang('No slides') ?></p></div><?php endif ?>

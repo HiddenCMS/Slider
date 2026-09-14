@@ -1,7 +1,7 @@
 const assert = require('node:assert/strict');
-const fs = require('node:fs');
+const {execFileSync} = require('node:child_process');
 const vm = require('node:vm');
-const source = fs.readFileSync(require('node:path').join(__dirname, '../widgets/slider/js/slider.js'), 'utf8');
+const source = execFileSync('php', [require('node:path').join(__dirname, 'script.php')], {encoding:'utf8'});
 const effects = ['slide', 'fade', 'cube', 'flip', 'coverflow', 'cards', 'creative', 'zoom', 'vertical', 'fade-move'];
 
 function options(effect, reduced = false) {

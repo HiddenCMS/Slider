@@ -7,13 +7,13 @@ $(function(){
             var order = function(){ return $list.children().map(function(){ return $(this).data('id'); }).get(); };
             var save = function(){
                 if (JSON.stringify(before) === JSON.stringify(order())) return;
-                $list.sortable('disable'); $status.text("Enregistrement de l'ordre...").removeClass('slider-missing');
+                $list.sortable('disable'); $status.text(<?php echo json_encode((string)$this->lang('Saving the order...'), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?>).removeClass('slider-missing');
                 var restore = function(message){
                     before.forEach(function(id){ $list.append($list.children('[data-id="' + id + '"]')); });
-                    $status.text(message || "Impossible d'enregistrer l'ordre. Reessayez.").addClass('slider-missing');
+                    $status.text(message || <?php echo json_encode((string)$this->lang('Unable to save the order. Please try again.'), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?>).addClass('slider-missing');
                 };
                 $.ajax({url:$list.data('slider-sort'),type:'POST',dataType:'json',data:{order:order(),token:$list.data('token')}})
-                    .done(function(result){ if (result && result.success) $status.text('Ordre enregistre'); else restore(result && result.message); })
+                    .done(function(result){ if (result && result.success) $status.text(<?php echo json_encode((string)$this->lang('Order saved'), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?>); else restore(result && result.message); })
                     .fail(function(){ restore(); })
                     .always(function(){ $list.sortable('enable'); });
             };

@@ -34,14 +34,14 @@
                 autoplay: count > 1 && !reduced && root.dataset.autoplay === '1' ? {delay:Number(root.dataset.delay),disableOnInteraction:false,pauseOnMouseEnter:true} : false,
                 navigation:{prevEl:root.querySelector('.hc-slider-prev'),nextEl:root.querySelector('.hc-slider-next')},
                 pagination:{el:root.querySelector('.hc-slider-pagination'),clickable:true,bulletElement:'button'},
-                a11y:{prevSlideMessage:'Slide precedente',nextSlideMessage:'Slide suivante',paginationBulletMessage:'Afficher la slide {{index}}'},
+                a11y:{prevSlideMessage:<?php echo json_encode((string)$this->lang('Previous slide'), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?>,nextSlideMessage:<?php echo json_encode((string)$this->lang('Next slide'), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?>,paginationBulletMessage:<?php echo json_encode((string)$this->lang('Show slide {{index}}'), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?>},
                 on:{init:sync,autoplayStart:sync,autoplayStop:sync,slideChange:visibleSlide}
             });
             function sync(instance){
                 if (!play) return;
                 var running = instance.autoplay && instance.autoplay.running;
                 play.setAttribute('aria-pressed',running ? 'true':'false');
-                play.setAttribute('aria-label',running ? 'Mettre en pause':'Lancer le defilement');
+                play.setAttribute('aria-label',running ? <?php echo json_encode((string)$this->lang('Pause slideshow'), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?>:<?php echo json_encode((string)$this->lang('Start slideshow'), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?>);
                 play.title=play.getAttribute('aria-label');
                 play.querySelector('i').className=running ? 'fas fa-pause':'fas fa-play';
             }
