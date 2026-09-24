@@ -22,12 +22,4 @@ $(function(){
         });
     };
     $('body').on('nf.load',initSort); initSort();
-    $('[data-slider-image]').on('click',function(){
-        var $field=$(this).closest('.slider-image-field'),$form=$field.closest('form');
-        window.HiddenCMS.openFilePicker({accept:'image',selectedId:$form.find('[name="image_id"]').val(),onSelect:function(file){
-            $form.find('[name="image_id"]').val(file.id);
-            $field.find('[data-slider-image-name]').text(file.name);
-            $field.find('[data-slider-image-preview]').attr('src',file.url).prop('hidden',false);
-        }});
-    });
 });

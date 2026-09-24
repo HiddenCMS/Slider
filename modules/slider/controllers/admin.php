@@ -49,10 +49,8 @@ class Admin extends Controller_Module
     {
         $this->css('admin')->css('file_picker')->js('file_picker')->js('admin');
         $id = $row['slide_id'] ?? 0;
-        $image = !empty($row['image_id']) ? $this->db->from('file')->where('id', (int)$row['image_id'])->row() : NULL;
         return $this->form2()
-            ->rule($this->form_text('image_id')->value($row['image_id'] ?? '')->size('slider-image-value'))
-            ->info($this->view('image_field', ['image' => $image]))
+            ->info($this->module('files')->picker_field('image_id', $row['image_id'] ?? 0, 'Image', 'image', (string)$this->lang('No image selected')))
             ->rule($this->form_text('alt')->title('Alternative text')->value($row['alt'] ?? ''))
             ->rule($this->form_text('title')->title((string)$this->lang('Title (optional)'))->value($row['title'] ?? ''))
             ->rule($this->form_textarea('description')->title((string)$this->lang('Description (optional)'))->value($row['description'] ?? ''))
